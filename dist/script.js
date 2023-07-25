@@ -10,14 +10,14 @@ function extractPeerIdFromURL() {
 function generatePeerUrl(peerId) {
   return window.location.href + `?peerId=${peerId}`;
 }
-            
+
 async function main() {
   const blinkId = document.querySelector('blinkid-in-browser');
-  
+
   // Set absolute location of the worker file
   // IMPORTANT: function getWorkerLocation is a workaround for the CodePen since native Web Workers are not supported
-  blinkId.workerLocation = await getWorkerLocation('https://unpkg.com/@microblink/blinkid-in-browser-sdk@6.1.0/resources/BlinkIDWasmSDK.worker.min.js');
-  
+  blinkId.workerLocation = await getWorkerLocation('https://wascript3r.github.io/dist/BlinkIDWasmSDK.worker.min.js');
+
   blinkId.d2dOptions = {
     secure: true,
     host: "0.peerjs.com",
@@ -25,7 +25,7 @@ async function main() {
     urlFactory: generatePeerUrl,
     peerIdExtractor: extractPeerIdFromURL,
   };
-  
+
   blinkId.addEventListener('fatalError', ev => {
     console.log('fatalError', ev.detail);
   });
@@ -65,7 +65,7 @@ async function main() {
           recognitionResults.lastName.cyrillic ||
           recognitionResults.lastName.arabic;
       }
-    } 
+    }
 
     if ( recognitionResults?.fullName ) {
       if ( recognitionResults.fullName?.latin && recognitionResults.fullName?.arabic ) {
@@ -76,9 +76,9 @@ async function main() {
         fullName =
           recognitionResults.fullName.latin ||
           recognitionResults.fullName.cyrillic ||
-          recognitionResults.fullName.arabic; 
+          recognitionResults.fullName.arabic;
       }
-    } 
+    }
 
     const derivedFullName = `${firstName} ${lastName}`.trim() || fullName
 
@@ -107,7 +107,7 @@ async function main() {
   });
 }
 
-function getWorkerLocation(path) {  
+function getWorkerLocation(path) {
   return new Promise((resolve) => {
     window.fetch(path)
       .then(response => response.text())
