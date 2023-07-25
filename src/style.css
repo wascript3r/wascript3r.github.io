@@ -1,0 +1,28 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  font-family: "Avenir Next", sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+blinkid-in-browser {
+  /* Customization of UI - see variables in src/components/shared/styles/_globals.scss */
+  /* --mb-component-background: red; */
+}
